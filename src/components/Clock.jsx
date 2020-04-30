@@ -4,8 +4,7 @@ import calculateTime from './calculateTime'
 export class Clock extends Component {
   constructor(props) {
     super();
-    this.timezone = props.timezone;
-    this.time = calculateTime(this.props.timezone);
+    this.time = calculateTime(props.timezone);
     this.state = {
       hours: '',
       minutes: '', 
@@ -15,7 +14,7 @@ export class Clock extends Component {
   }
 
   setTime() {
-    this.time = calculateTime(this.timezone);
+    this.time = calculateTime(this.props.timezone);
     this.setState({
       hours: this.time.hours,
       minutes: this.time.minutes, 
