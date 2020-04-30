@@ -4,10 +4,8 @@ import calculateTime from './calculateTime'
 export class Clock extends Component {
   constructor(props) {
     super();
-    this.id = props.id;
     this.timezone = props.timezone;
-    this.time = calculateTime(this.timezone);
-    this.title = props.title;
+    this.time = calculateTime(this.props.timezone);
     this.state = {
       hours: '',
       minutes: '', 
@@ -31,7 +29,6 @@ export class Clock extends Component {
     this.timer = setInterval(() => {
       this.setTime();
     }, 100)
-    
   }
 
   componentWillUnmount() {
@@ -43,10 +40,10 @@ export class Clock extends Component {
     return (
       <div className="clock-item col-sm-4 card text-center border-0">
         <div>
-          <button className="btn close" onClick={() => this.onRemove(this.id)}><span aria-hidden="true">&times;</span></button>
+          <button className="btn close" onClick={() => this.onRemove(this.props.id)}><span aria-hidden="true">&times;</span></button>
         </div>
         
-        <h5 className="title">{this.title}</h5>
+        <h5 className="title">{this.props.title}</h5>
         <h3 className="clock">
           <span id="hours">{this.state.hours}</span>:
           <span>{this.state.minutes}</span>:
