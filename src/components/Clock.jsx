@@ -4,21 +4,19 @@ import calculateTime from './calculateTime'
 export class Clock extends Component {
   constructor(props) {
     super();
-    this.time = calculateTime(props.timezone);
     this.state = {
       hours: '',
       minutes: '', 
       seconds: ''
     };
-    this.onRemove = props.onRemove;
   }
 
   setTime() {
-    this.time = calculateTime(this.props.timezone);
+    const time = calculateTime(this.props.timezone);
     this.setState({
-      hours: this.time.hours,
-      minutes: this.time.minutes, 
-      seconds: this.time.seconds 
+      hours: time.hours,
+      minutes: time.minutes, 
+      seconds: time.seconds 
     })
   }
 
@@ -39,7 +37,7 @@ export class Clock extends Component {
     return (
       <div className="clock-item col-sm-4 card text-center border-0">
         <div>
-          <button className="btn close" onClick={() => this.onRemove(this.props.id)}><span aria-hidden="true">&times;</span></button>
+          <button className="btn close" onClick={() => this.props.onRemove(this.props.id)}><span aria-hidden="true">&times;</span></button>
         </div>
         
         <h5 className="title">{this.props.title}</h5>
